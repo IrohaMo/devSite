@@ -10,7 +10,7 @@
 		let theme = "dark";
 
 		// 粒子の数（パフォーマンスに合わせて調整）
-		const COUNT = 200;
+		const COUNT = 300;
 
 		const colors = {
 			dark: {
@@ -35,7 +35,8 @@
 
 			update(t) {
 			// パーリンノイズでなめらかな動き
-			const angle = p.noise(this.x * 0.001, this.y * 0.001, t * 0.1) * p.TWO_PI * 4;
+			const n = p.noise(this.x * 0.001, this.y * 0.001, t * 0.1) * p.TWO_PI * 4;
+			const angle = (n - 0.5) * p.TWO_PI * 2;
 			this.x += Math.cos(angle) * this.z;
 			this.y += Math.sin(angle) * this.z;
 
