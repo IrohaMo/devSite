@@ -22,7 +22,8 @@
 			: "light";
 
 		p.setup = () => {
-			p.createCanvas(p.windowWidth, p.windowHeight);
+			const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+			p.createCanvas(p.windowWidth, vh);
 			p.noStroke();
 			p.colorMode(p.HSB, 360, 100, 100, 100);
 
@@ -46,6 +47,18 @@
 			}
 		};
 
+		p.windowResized = () => {
+			const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+			p.resizeCanvas(p.windowWidth, vh);
+		};
+
+		if (window.visualViewport) {
+			window.visualViewport.addEventListener("resize", () => {
+				const vh = window.visualViewport.height;
+				p.resizeCanvas(p.windowWidth, vh);
+			});
+		}
+		
 		p.draw = () => {
 			const theme = getTheme();
 			const colors = palettes[theme];
@@ -118,6 +131,8 @@
 	#p5-container {
 		position: fixed;
 		inset: 0;
+		width: 100%;
+		height: 100dvh; /* ← 重要！ “動的なビューポート高” */
 		z-index: -1;
 		pointer-events: none;
 		overflow: hidden;
@@ -126,5 +141,6 @@
 		display: block;
 		position: absolute;
 		inset: 0;
+		object-fit: cover;
 	}
 </style>
