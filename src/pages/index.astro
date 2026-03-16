@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
+import ArticlePreview from '../components/ArticlePreview.astro';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Grid from '../components/Grid.astro';
@@ -17,6 +18,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const projects = (await getCollection('work'))
 	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
 	.slice(0, 4);
+
+const articles = (await getCollection('article'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 3);
 
 import type { iconPaths } from '../components/IconPaths';
 
@@ -78,6 +83,28 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 							projects.map((project) => (
 								<li>
 									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+			</section>
+
+			<section class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Articles</h3>
+					<p>
+						開発メモや制作記録をまとめる記事一覧です。
+						<a href="/articles">すべて見る</a>
+					</p>
+				</header>
+
+				<div class="gallery">
+					<Grid>
+						{
+							articles.map((article) => (
+								<li>
+									<ArticlePreview article={article} />
 								</li>
 							))
 						}

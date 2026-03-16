@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+import ArticlePreview from '../../components/ArticlePreview.astro';
+import Grid from '../../components/Grid.astro';
+import Hero from '../../components/Hero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('article')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout title="Articles" description="記事一覧">
+	<main class="wrapper stack gap-15 lg:gap-20">
+		<section class="stack gap-8">
+			<Hero title="Articles" tagline="開発メモや制作記録を追加していけるようにしました。" align="start" />
+			<p class="lead">
+				記事は <code>src/content/article</code> に Markdown を追加すると自動で一覧と詳細ページに反映されます。
+			</p>
+		</section>
+
+		<section>
+			<Grid>
+				{
+					articles.map((article) => (
+						<li>
+							<ArticlePreview article={article} />
+						</li>
+					))
+				}
+			</Grid>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.lead {
+		max-width: 65ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+</style>

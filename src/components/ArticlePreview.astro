@@ -1,0 +1,75 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	article: CollectionEntry<'article'>;
+}
+
+const { data, id } = Astro.props.article;
+const publishDate = data.publishDate.toLocaleDateString('ja-JP', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+---
+
+<a class="card" href={`/articles/${id}`}>
+	<div class="meta">
+		<span class="date">{publishDate}</span>
+		{data.tags.length > 0 && <span class="tag">{data.tags[0]}</span>}
+	</div>
+	<h4>{data.title}</h4>
+	<p>{data.description}</p>
+</a>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		min-height: 100%;
+		padding: 1.5rem;
+		background: var(--gradient-subtle);
+		border: 1px solid var(--gray-800);
+		border-radius: 1rem;
+		box-shadow: var(--shadow-sm);
+		text-decoration: none;
+		transition:
+			transform var(--theme-transition),
+			box-shadow var(--theme-transition);
+	}
+
+	.card:hover,
+	.card:focus {
+		transform: translateY(-2px);
+		box-shadow: var(--shadow-md);
+	}
+
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.tag {
+		color: var(--accent-regular);
+		font-weight: 600;
+	}
+
+	h4 {
+		font-size: var(--text-xl);
+	}
+
+	p {
+		color: var(--gray-300);
+	}
+
+	@media (min-width: 50em) {
+		.card {
+			padding: 2rem;
+			border-radius: 1.5rem;
+		}
+	}
+</style>
