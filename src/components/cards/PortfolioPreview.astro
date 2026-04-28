@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -6,15 +7,17 @@ interface Props {
 }
 
 const { data, id } = Astro.props.project;
-const isIconLikeImage = /(?:app[-_ ]?icon|icon)/i.test(data.img);
+const isIconLikeImage = /(?:app[-_ ]?icon|icon|favicon)/i.test(data.img.src);
 ---
 
 <a class="card" href={`/work/${id}`}>
 	<span class="title">{data.title}</span>
-	<img
+	<Image
 		class:list={{ 'icon-like': isIconLikeImage }}
 		src={data.img}
 		alt={data.img_alt || ''}
+		widths={[144, 216, 288, 384, 544]}
+		sizes="(min-width: 50em) min(38vw, 17rem), 9rem"
 		loading="lazy"
 		decoding="async"
 	/>
