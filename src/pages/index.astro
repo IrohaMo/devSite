@@ -11,6 +11,7 @@ import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import About from '../components/About.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
+import HackathonPost from '../components/HackathonPost.astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -32,6 +33,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
   { label: 'GitHub', href: 'https://github.com/IrohaMo', icon: 'github-logo' },
   { label: 'Instagram', href: 'https://Instagram.com/irohamo.dev', icon: 'instagram-logo' },
 ];
+
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
 ---
@@ -115,21 +117,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 			<section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
 					<h3>Mentions</h3>
-					<p>
-
-					</p>
 				</header>
 
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['58Hackathon'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
+				<div class="gallery mention-embed">
+					<HackathonPost />
 				</div>
 			</section>
 		</main>
@@ -235,23 +226,9 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 
 	/* ====================================================== */
 
-	.mention-card {
-		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
-	}
-
-	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
-		}
+	.mention-embed {
+		max-width: 48rem;
+		width: 100%;
+		justify-self: center;
 	}
 </style>

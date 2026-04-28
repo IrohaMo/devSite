@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 
 import ContactCTA from '../../components/ContactCTA.astro';
+import HackathonPost from '../../components/HackathonPost.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
 import Pill from '../../components/Pill.astro';
@@ -47,6 +48,11 @@ const { Content } = await render(entry);
 					<div class="content">
 						<Content />
 					</div>
+					{entry.id === 'galaxy-survival' && (
+						<div class="work-mention">
+							<HackathonPost />
+						</div>
+					)}
 				</div>
 			</main>
 		</div>
@@ -105,6 +111,12 @@ const { Content } = await render(entry);
 		box-shadow: var(--shadow-sm);
 		background: var(--gradient-subtle);
 		border: 1px solid var(--gray-800);
+	}
+
+	.work-mention {
+		max-width: 48rem;
+		width: 100%;
+		margin-inline: auto;
 	}
 
 	.content :global(blockquote) {

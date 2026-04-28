@@ -1,0 +1,72 @@
+---
+interface Props {
+	href: string;
+	title: string;
+}
+
+const { href, title } = Astro.props;
+---
+
+<div class="x-embed">
+	<blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-conversation="none">
+		<slot>
+			<a href={href}>{title} on X</a>
+		</slot>
+	</blockquote>
+</div>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script is:inline>
+	const loadXWidget = () => window.twttr?.widgets?.load?.();
+
+	if (document.readyState === 'complete') {
+		loadXWidget();
+	} else {
+		addEventListener('load', loadXWidget, { once: true });
+	}
+
+	setTimeout(loadXWidget, 500);
+	setTimeout(loadXWidget, 1500);
+</script>
+
+<style>
+	.x-embed {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.x-embed :global(iframe),
+	.x-embed :global(.twitter-tweet) {
+		width: 100% !important;
+		max-width: 35rem !important;
+	}
+
+	.x-embed :global(blockquote.twitter-tweet) {
+		padding: 0 !important;
+		border: 0 !important;
+		font-family: var(--font-body) !important;
+		font-size: var(--text-base) !important;
+		font-weight: 400 !important;
+		line-height: 1.5 !important;
+		color: var(--gray-200) !important;
+	}
+
+	.x-embed a {
+		color: var(--gray-300);
+		font-size: var(--text-md);
+	}
+
+	.x-embed :global(p) {
+		margin-bottom: 1rem;
+		color: var(--gray-200);
+		font-size: var(--text-base);
+	}
+
+	.x-embed :global(.twitter-tweet) {
+		margin: 0 !important;
+	}
+</style>
