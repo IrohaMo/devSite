@@ -12,8 +12,8 @@
 
 		// テーマ別のカラーパレット
 		const palettes = {
-			dark: [220, 250, 280, 320], // 青〜紫系
-			light: [30, 180, 300], // 橙〜水色〜ピンク系
+			dark: [205, 212, 218], // デニム寄りの青系
+			light: [195, 210, 225], // 水色〜青系
 		};
 
 		// 現在のテーマ判定
@@ -21,6 +21,30 @@
 			document.documentElement.classList.contains("theme-dark")
 			? "dark"
 			: "light";
+
+		const paintBackground = (theme) => {
+			if (theme === "dark") {
+				p.background(0, 0, 8);
+			} else {
+				p.background(0, 0, 100);
+			}
+		};
+
+		const resetLayers = () => {
+			const theme = getTheme();
+			const colors = palettes[theme];
+			layers.length = 0;
+			paintBackground(theme);
+			for (let i = 0; i < LAYER_COUNT; i++) {
+				layers.push({
+					hue: p.random(colors),
+					yoff: p.random(1000),
+					amp: p.random(100, 280),
+					alpha: p.random(4, 12),
+					speed: p.random(0.0001, 0.0002),
+				});
+			}
+		};
 		
 		// 📱 高さを正しく取る関数（スマホ対応）
  		const getSafeHeight = () => window.visualViewport ? window.visualViewport.height : window.innerHeight;
@@ -32,24 +56,10 @@
 			p.frameRate(30);
     		p.blendMode(p.BLEND);
 
-			// 🟩 初期描画で真っ先に背景を1回塗る
-			const isDark = document.documentElement.classList.contains("theme-dark");
-			if (isDark) {
-				p.background(0, 0, 8); // 真っ黒ではなく柔らかい黒
-			} else {
-				p.background(0, 0, 100); // 白背景
-			}
+			resetLayers();
 
-			// 🟩 光レイヤーを初期化
-			for (let i = 0; i < LAYER_COUNT; i++) {
-				layers.push({
-					hue: p.random(isDark ? [220, 250, 280, 320] : [30, 180, 300]),
-					yoff: p.random(1000),
-					amp: p.random(100, 280),
-					alpha: p.random(4, 12),
-					speed: p.random(0.0001, 0.0002),
-				});
-			}
+			const themeObserver = new MutationObserver(resetLayers);
+			themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 		};
 		
 		p.draw = () => {
@@ -100,11 +110,11 @@
 			// 上部グラデーション（光の霞）
 			const g = p.drawingContext.createLinearGradient(0, 0, 0, p.height);
 			if (theme === "dark") {
-				g.addColorStop(0, "hsla(250, 80%, 70%, 0.08)");
+				g.addColorStop(0, "hsla(210, 58%, 54%, 0.09)");
 				g.addColorStop(1, "hsla(210, 60%, 5%, 0)");
 			} else {
-				g.addColorStop(0, "hsla(50, 90%, 95%, 0.1)");
-				g.addColorStop(1, "hsla(200, 80%, 70%, 0)");
+				g.addColorStop(0, "hsla(205, 90%, 95%, 0.1)");
+				g.addColorStop(1, "hsla(215, 80%, 70%, 0)");
 			}
 			p.drawingContext.fillStyle = g;
 			p.rect(0, 0, p.width, p.height);

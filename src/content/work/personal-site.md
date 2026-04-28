@@ -1,8 +1,8 @@
 ---
 title: Personal Site
 publishDate: 2025-10-10 00:00:00
-img: /assets/site-ss.png
-img_alt: This site's screenshot.
+img: /assets/favicon.svg
+img_alt: IrohaMo favicon.
 description: |
     自作のWebサイト
 tags:

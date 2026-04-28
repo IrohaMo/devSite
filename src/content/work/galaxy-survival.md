@@ -1,7 +1,7 @@
 ---
 title: GalaxySurvival
 publishDate: 2025-09-21 00:00:00
-img: /assets/galaxy-survival.svg
+img: /assets/Galaxy_survaival_app_icon.png
 img_alt: GalaxySurvivalのキービジュアル。
 description: |
     ハッカソン制作ゲーム

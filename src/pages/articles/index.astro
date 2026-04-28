@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 
-import ArticlePreview from '../../components/ArticlePreview.astro';
-import Grid from '../../components/Grid.astro';
-import Hero from '../../components/Hero.astro';
+import ArticlePreview from '../../components/cards/ArticlePreview.astro';
+import Grid from '../../components/ui/Grid.astro';
+import Hero from '../../components/sections/Hero.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const articles = (await getCollection('article')).sort(
