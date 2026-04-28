@@ -1,72 +1,88 @@
 ---
 interface Props {
-	href: string;
-	title: string;
+    href: string;
+    title?: string;
 }
 
-const { href, title } = Astro.props;
+const { href, title = 'Post on X' } = Astro.props;
 ---
 
 <div class="x-embed">
-	<blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-conversation="none">
-		<slot>
-			<a href={href}>{title} on X</a>
-		</slot>
-	</blockquote>
+    <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-conversation="none">
+        <a href={href}>{title}</a>
+    </blockquote>
 </div>
 
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script is:inline>
-	const loadXWidget = () => window.twttr?.widgets?.load?.();
+    const loadXWidget = () => {
+        if (window.twttr?.widgets?.load) {
+            window.twttr.widgets.load();
+            return;
+        }
 
-	if (document.readyState === 'complete') {
-		loadXWidget();
-	} else {
-		addEventListener('load', loadXWidget, { once: true });
-	}
+        if (document.querySelector('script[src="https://platform.twitter.com/widgets.js"]')) {
+            return;
+        }
 
-	setTimeout(loadXWidget, 500);
-	setTimeout(loadXWidget, 1500);
+        const script = document.createElement('script');
+        script.src = 'https://platform.twitter.com/widgets.js';
+        script.async = true;
+        script.charset = 'utf-8';
+        script.onload = () => window.twttr?.widgets?.load?.();
+        document.head.appendChild(script);
+    };
+
+    loadXWidget();
+
+    document.addEventListener('astro:page-load', loadXWidget);
 </script>
 
 <style>
-	.x-embed {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		padding: 0;
-		overflow: hidden;
-	}
+    .x-embed {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+    }
 
-	.x-embed :global(iframe),
-	.x-embed :global(.twitter-tweet) {
-		width: 100% !important;
-		max-width: 35rem !important;
-	}
+    .x-embed :global(iframe),
+    .x-embed :global(.twitter-tweet) {
+        width: 100% !important;
+        max-width: 35rem !important;
+    }
 
-	.x-embed :global(blockquote.twitter-tweet) {
-		padding: 0 !important;
-		border: 0 !important;
-		font-family: var(--font-body) !important;
-		font-size: var(--text-base) !important;
-		font-weight: 400 !important;
-		line-height: 1.5 !important;
-		color: var(--gray-200) !important;
-	}
+    .x-embed :global(blockquote.twitter-tweet) {
+        padding: 0 !important;
+        border: 0 !important;
+        font-family: var(--font-body) !important;
+        font-size: var(--text-base) !important;
+        font-weight: 400 !important;
+        line-height: 1.5 !important;
+        color: var(--gray-200) !important;
+    }
 
-	.x-embed a {
-		color: var(--gray-300);
-		font-size: var(--text-md);
-	}
+    .x-embed a {
+        color: var(--gray-300);
+        font-size: var(--text-md);
+    }
 
-	.x-embed :global(p) {
-		margin-bottom: 1rem;
-		color: var(--gray-200);
-		font-size: var(--text-base);
-	}
+    .x-embed :global(.twitter-tweet) {
+        margin: 0 !important;
+    }
+    
+    .x-embed {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        
+        border-radius: 1.5rem;
+        overflow: hidden;
+    }
 
-	.x-embed :global(.twitter-tweet) {
-		margin: 0 !important;
-	}
+    .x-embed :global(iframe) {
+        border-radius: 1.5rem !important;
+        display: block;
+    }
+    
+    
 </style>

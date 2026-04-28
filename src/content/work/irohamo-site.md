@@ -1,5 +1,5 @@
 ---
-title: Personal Site
+title: IrohaMo Site
 publishDate: 2025-10-10 00:00:00
 img: /assets/favicon.svg
 img_alt: IrohaMo favicon.
