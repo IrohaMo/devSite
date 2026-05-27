@@ -7,11 +7,8 @@ import Icon from '../components/ui/Icon.astro';
 import About from '../components/sections/About.astro';
 import Works from '../components/sections/Works.astro';
 import Articles from '../components/sections/Articles.astro';
-import Mentions from '../components/sections/Mentions.astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection, render } from 'astro:content';
-import XPostEmbed from '../components/embeds/XPostEmbed.astro';
 
 
 import type { iconPaths } from '../components/ui/IconPaths';
@@ -29,8 +26,8 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 ---
 
 <BaseLayout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
+	<div class="stack gap-15 lg:gap-20">
+		<div class="wrapper stack gap-8 lg:gap-15">
 			<header class="hero">
 				<Hero
 					title="irohamo"
@@ -63,10 +60,9 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 			<About />
 		</div>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
+		<main class="wrapper stack gap-15 lg:gap-20">
             <Works />
             <Articles />
-			<Mentions />
 		</main>
 		<ContactCTA />
 	</div>
@@ -154,7 +150,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		text-align: center;
 		max-width: 50ch;
 		font-size: var(--text-md);
-		color: var(--gray-300);
+		color: var(--gray-0);
 	}
 
 	.section-header h3 {
@@ -165,7 +161,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		.section {
 			grid-template-columns: repeat(4, 1fr);
 			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 5rem;
+			gap: 2.5rem;
 		}
 
 		.section.with-cta {
