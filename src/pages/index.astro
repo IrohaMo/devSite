@@ -7,14 +7,11 @@ import Icon from '../components/ui/Icon.astro';
 import About from '../components/sections/About.astro';
 import Works from '../components/sections/Works.astro';
 import Articles from '../components/sections/Articles.astro';
-import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 
 import type { iconPaths } from '../components/ui/IconPaths';
 
-
-const portrait="/assets/profile.jpeg";
 
 const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
   { label: 'GitHub', href: 'https://github.com/irohamo', icon: 'github-logo' },
@@ -47,15 +44,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 						))}
 					</div>
 				</Hero>
-				<Image
-					src={portrait}
-					alt="me holding the shamisen."
-					width={480}
-					height={620}
-					loading="eager"
-					format="webp"
-					sizes="(max-width: 768px) 100vw, 480px"
-				/>
 			</header>
 			<About />
 		</div>
@@ -73,7 +61,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 2rem;
 	}
 
 	.roles {
@@ -104,22 +91,9 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		color: var(--accent-regular);
 	}
 
-	.hero img {
-		width: 100%;
-		max-width: 320px;
-		height: auto;
-		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
 	@media (min-width: 50em) {
 		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
 			padding-inline: 2.5rem;
-			gap: 3.75rem;
 		}
 
 		.roles {
@@ -133,11 +107,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 			margin-top: -0.5rem;
 		}
 
-		.hero img {
-			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
 	}
 
 	.section {
