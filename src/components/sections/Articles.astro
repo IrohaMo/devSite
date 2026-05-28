@@ -32,7 +32,7 @@ const articles = allArticles.slice(0, 3);
 		allArticles.length > 3 && (
 			<footer class="section-footer">
 				<a href="/articles" class="section-link">
-					すべて見る
+					すべて見る<span aria-hidden="true">→</span>
 				</a>
 			</footer>
 		)
@@ -42,32 +42,39 @@ const articles = allArticles.slice(0, 3);
 <style>
 	.section-footer {
 		display: flex;
-		justify-content: center;
-		margin-top: 2rem;
+		justify-content: flex-end;
+		margin-top: 1.25rem;
 	}
 
 	.section-link {
 		display: inline-flex;
 		align-items: center;
-		justify-content: center;
-		padding: 0.75rem 1.25rem;
-		border: 1px solid var(--gray-800);
-		border-radius: 999px;
+		gap: 0.4em;
+		padding: 0.25rem 0;
 		color: var(--gray-0);
 		font-family: var(--font-brand);
 		font-size: var(--text-sm);
-		font-weight: 600;
+		font-weight: 500;
+		letter-spacing: 0.02em;
 		text-decoration: none;
+		border-bottom: 1px solid var(--gray-300);
 		transition:
-			color 180ms ease,
-			border-color 180ms ease,
-			transform 180ms ease;
+			color var(--theme-transition),
+			border-color var(--theme-transition);
+	}
+
+	.section-link span {
+		transition: transform var(--theme-transition);
 	}
 
 	.section-link:hover,
 	.section-link:focus-visible {
-		border-color: var(--accent-regular);
 		color: var(--accent-regular);
-		transform: translateY(-1px);
+		border-color: var(--accent-regular);
+	}
+
+	.section-link:hover span,
+	.section-link:focus-visible span {
+		transform: translateX(3px);
 	}
 </style>

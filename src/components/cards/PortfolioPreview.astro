@@ -34,20 +34,20 @@ const isIconLikeImage = /(?:app[-_ ]?icon|icon|favicon)/i.test(data.img.src);
 <style>
 	.card {
 		display: grid;
-		grid-template-columns: minmax(0, 1fr) 7rem;
+		grid-template-columns: minmax(0, 1fr) 5rem;
 		grid-template-areas: 'content media';
 		align-items: stretch;
-		min-height: 11.25rem;
-		padding: 1.25rem;
-		gap: 1rem;
+		min-height: 8rem;
+		padding: 1rem;
+		gap: 0.875rem;
 		background: var(--gradient-subtle);
 		border: 1px solid var(--gray-800);
-		border-radius: 1rem;
+		border-radius: 0.75rem;
 		overflow: hidden;
 		box-shadow: var(--shadow-sm);
 		text-decoration: none;
 		font-family: var(--font-brand);
-		font-size: var(--text-lg);
+		font-size: var(--text-base);
 		font-weight: 500;
 		transition: box-shadow var(--theme-transition);
 	}
@@ -69,8 +69,8 @@ const isIconLikeImage = /(?:app[-_ ]?icon|icon|favicon)/i.test(data.img.src);
 
 	.title {
 		color: var(--gray-100);
-		font-size: var(--text-lg);
-		line-height: 1.05;
+		font-size: var(--text-base);
+		line-height: 1.2;
 		overflow-wrap: anywhere;
 	}
 
@@ -119,7 +119,7 @@ const isIconLikeImage = /(?:app[-_ ]?icon|icon|favicon)/i.test(data.img.src);
 
 	@media (min-width: 28em) {
 		.card {
-			grid-template-columns: minmax(0, 1fr) 8.5rem;
+			grid-template-columns: minmax(0, 1fr) 6rem;
 		}
 
 		.tags :global(.pill:nth-child(n + 3)) {
@@ -129,27 +129,27 @@ const isIconLikeImage = /(?:app[-_ ]?icon|icon|favicon)/i.test(data.img.src);
 
 	@media (min-width: 50em) {
 		.card {
-			min-height: 16rem;
-			grid-template-columns: minmax(0, 1fr) minmax(9.5rem, 42%);
-			padding: 1.5rem;
-			gap: 1.5rem;
-			border-radius: 1.5rem;
+			min-height: 10rem;
+			grid-template-columns: minmax(0, 1fr) minmax(6.5rem, 30%);
+			padding: 1.25rem;
+			gap: 1rem;
+			border-radius: 1rem;
 		}
 
 		.title {
-			font-size: var(--text-2xl);
+			font-size: var(--text-lg);
 		}
 
 		.content {
-			gap: 1rem;
-			padding-block: 0.5rem;
+			gap: 0.75rem;
+			padding-block: 0.25rem;
 		}
 
 		.media {
-			max-width: 11.5rem;
+			max-width: 7.5rem;
 			justify-self: end;
-			padding: 1rem;
-			border-radius: 1.25rem;
+			padding: 0.75rem;
+			border-radius: 0.875rem;
 		}
 	}
 </style>
