@@ -47,7 +47,7 @@ const publishDate = entry.data.publishDate.toLocaleDateString('ja-JP', {
 				</div>
 			</header>
 			<main class="wrapper">
-				<article class="stack gap-10 content">
+				<article class="stack gap-10 content reading">
 					<Content />
 				</article>
 			</main>
@@ -109,6 +109,21 @@ const publishDate = entry.data.publishDate.toLocaleDateString('ja-JP', {
 		margin-inline: auto;
 		min-width: 0;
 		overflow-wrap: anywhere;
+	}
+
+	/* Readable sheet: hides the wave background behind the body text. */
+	.reading {
+		max-width: 72ch;
+		background: var(--gray-999);
+		border: 1px solid var(--gray-800);
+		border-radius: 0.5rem;
+		padding: 2rem 1.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.reading {
+			padding: 3rem;
+		}
 	}
 
 	.content > :global(* + *) {

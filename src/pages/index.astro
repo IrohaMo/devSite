@@ -28,12 +28,13 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 			<header class="hero">
 				<Hero
 					title="irohamo"
-					tagline=""
+					tagline="アプリをつくり、三味線を弾いています。"
 					align="start"
 				>
 					<div class="roles">
-						<span class="role"><Icon icon="code" size="1em" /> Developer</span>
-						<span class="role"><Icon icon="shamisen-icon" size="1em" /> Shamisen</span>
+						<span class="role">Developer</span>
+						<span class="role-sep" aria-hidden="true">/</span>
+						<span class="role">Shamisen</span>
 					</div>
 					<div class="socials">
 						{iconLinks.map(({ href, icon, label }) => (
@@ -64,54 +65,64 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	}
 
 	.roles {
-		display: none;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: baseline;
+		gap: 0.6rem;
+		font-family: var(--font-brand);
+		font-size: var(--text-md);
+		letter-spacing: 0.02em;
+		color: var(--gray-200);
 	}
 
-	.role {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4em;
-		color: var(--gray-300);
-		font-size: var(--text-md);
+	.role-sep {
+		color: var(--gray-500);
 	}
 
 	.socials {
-		display: none;
+		display: flex;
+		justify-content: center;
+		gap: 0.25rem;
 	}
 
 	.social {
 		display: flex;
 		padding: 0.5rem;
-		color: var(--gray-300);
+		color: var(--gray-400);
 		text-decoration: none;
 		transition: color var(--theme-transition);
 	}
 
 	.social:hover {
-		color: var(--accent-regular);
+		color: var(--gray-0);
 	}
 
 	@media (min-width: 50em) {
 		.hero {
 			padding-inline: 2.5rem;
+			align-items: flex-start;
 		}
 
 		.roles {
-			display: flex;
-			gap: 1.5rem;
+			justify-content: flex-start;
 		}
 
 		.socials {
-			display: flex;
-			gap: 1rem;
-			margin-top: -0.5rem;
+			justify-content: flex-start;
+			margin-top: -0.25rem;
+			margin-inline: -0.5rem;
 		}
-
 	}
 
 	.section {
 		display: grid;
 		gap: 2rem;
+	}
+
+	.section.with-background {
+		border-top: 1px solid var(--gray-800);
+		padding-top: 2.5rem;
 	}
 
 	.section-header {
