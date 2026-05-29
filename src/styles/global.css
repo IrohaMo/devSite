@@ -22,6 +22,7 @@
 	--accent-overlay: hsla(211, 63%, 39%, 0.28);
 	--accent-subtle-overlay: var(--accent-overlay);
 	--accent-text-over: var(--gray-999);
+	--accent-glow: hsla(211, 70%, 45%, 0.18);
 
 	--link-color: var(--accent-regular);
 
@@ -92,12 +93,13 @@
 	--gray-999-basis: 225, 31%, 5%;
 	--gray-999: #090b11;
 
-	--accent-light: #153d73;
-	--accent-regular: #2f6fae;
-	--accent-dark: #9dc3e6;
-	--accent-overlay: hsla(209, 58%, 43%, 0.32);
-	--accent-subtle-overlay: hsla(210, 54%, 34%, 0.3);
+	--accent-light: #163f78;
+	--accent-regular: #3b86c9;
+	--accent-dark: #a6cdee;
+	--accent-overlay: hsla(209, 64%, 50%, 0.32);
+	--accent-subtle-overlay: hsla(210, 56%, 36%, 0.28);
 	--accent-text-over: var(--gray-0);
+	--accent-glow: hsla(209, 72%, 56%, 0.25);
 
 	--link-color: var(--accent-dark);
 
@@ -232,6 +234,23 @@ h5 {
 }
 .gap-48 {
 	gap: 12rem;
+}
+
+/* Hairline rule used to separate editorial sections. */
+.rule {
+	border: 0;
+	border-top: 1px solid var(--gray-800);
+}
+
+/* Small editorial section label (kicker). */
+.eyebrow {
+	display: block;
+	font-family: var(--font-brand);
+	font-size: var(--text-sm);
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--gray-400);
 }
 
 @media (min-width: 50em) {

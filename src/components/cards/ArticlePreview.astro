@@ -29,20 +29,16 @@ const publishDate = data.publishDate.toLocaleDateString('ja-JP', {
 		gap: 1rem;
 		min-height: 100%;
 		padding: 1.5rem;
-		background: var(--gradient-subtle);
+		background: var(--gray-900);
 		border: 1px solid var(--gray-800);
-		border-radius: 1rem;
-		box-shadow: var(--shadow-sm);
+		border-radius: 0.375rem;
 		text-decoration: none;
-		transition:
-			transform var(--theme-transition),
-			box-shadow var(--theme-transition);
+		transition: border-color var(--theme-transition);
 	}
 
 	.card:hover,
 	.card:focus {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-md);
+		border-color: var(--gray-600);
 	}
 
 	.meta {
@@ -54,8 +50,8 @@ const publishDate = data.publishDate.toLocaleDateString('ja-JP', {
 	}
 
 	.tag {
-		color: var(--accent-regular);
-		font-weight: 600;
+		color: var(--gray-300);
+		font-weight: 500;
 	}
 
 	h4 {
@@ -69,7 +65,7 @@ const publishDate = data.publishDate.toLocaleDateString('ja-JP', {
 	@media (min-width: 50em) {
 		.card {
 			padding: 2rem;
-			border-radius: 1.5rem;
+			border-radius: 0.375rem;
 		}
 	}
 </style>
